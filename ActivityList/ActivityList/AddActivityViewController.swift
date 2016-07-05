@@ -20,6 +20,7 @@ class AddActivityViewController: UIViewController {
         
         //self.dismissViewControllerAnimated(true, completion: nil)
         //self.presentViewController(ActivityTableViewController(), animated: true, completion: nil)
+        self.performSegueWithIdentifier("BackToActivityList", sender: nil)
     }
     
     

@@ -136,7 +136,7 @@
                     <navigationItem key="navigationItem" title="Add New Activity" id="PEW-3A-5F0">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="kgr-aZ-PUV">
                             <connections>
-                                <segue destination="nP9-pS-PBd" kind="presentation" id="ZQk-S3-NOh"/>
+                                <segue destination="nP9-pS-PBd" kind="presentation" identifier="BackToActivityList" id="ZQk-S3-NOh"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="S1K-7D-KSm">
