@@ -15,6 +15,8 @@
 		507D1DDD1D25ED4A0023243C /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D1DDC1D25ED4A0023243C /* ActivityTableViewCell.swift */; };
 		507D1DDF1D25EF4B0023243C /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D1DDE1D25EF4B0023243C /* ActivityTableViewController.swift */; };
 		507D1DE11D25F5740023243C /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D1DE01D25F5740023243C /* Activity.swift */; };
+		50975CE51D2B767F00C6B85D /* ActivityModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50975CE31D2B767F00C6B85D /* ActivityModel.xcdatamodeld */; };
+		50975CE71D2B814C00C6B85D /* AddActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50975CE61D2B814C00C6B85D /* AddActivityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		507D1DDC1D25ED4A0023243C /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		507D1DDE1D25EF4B0023243C /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
 		507D1DE01D25F5740023243C /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		50975CE41D2B767F00C6B85D /* ActivityModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ActivityModel.xcdatamodel; sourceTree = "<group>"; };
+		50975CE61D2B814C00C6B85D /* AddActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +65,10 @@
 			isa = PBXGroup;
 			children = (
 				507D1DCA1D25E4DD0023243C /* AppDelegate.swift */,
+				50975CE31D2B767F00C6B85D /* ActivityModel.xcdatamodeld */,
 				507D1DCC1D25E4DD0023243C /* ViewController.swift */,
 				507D1DCE1D25E4DD0023243C /* Main.storyboard */,
+				50975CE61D2B814C00C6B85D /* AddActivityViewController.swift */,
 				507D1DDE1D25EF4B0023243C /* ActivityTableViewController.swift */,
 				507D1DE01D25F5740023243C /* Activity.swift */,
 				507D1DDC1D25ED4A0023243C /* ActivityTableViewCell.swift */,
@@ -145,9 +151,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50975CE51D2B767F00C6B85D /* ActivityModel.xcdatamodeld in Sources */,
 				507D1DE11D25F5740023243C /* Activity.swift in Sources */,
 				507D1DDF1D25EF4B0023243C /* ActivityTableViewController.swift in Sources */,
 				507D1DCD1D25E4DD0023243C /* ViewController.swift in Sources */,
+				50975CE71D2B814C00C6B85D /* AddActivityViewController.swift in Sources */,
 				507D1DCB1D25E4DD0023243C /* AppDelegate.swift in Sources */,
 				507D1DDD1D25ED4A0023243C /* ActivityTableViewCell.swift in Sources */,
 			);
@@ -299,8 +307,22 @@
 				507D1DDB1D25E4DD0023243C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		50975CE31D2B767F00C6B85D /* ActivityModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				50975CE41D2B767F00C6B85D /* ActivityModel.xcdatamodel */,
+			);
+			currentVersion = 50975CE41D2B767F00C6B85D /* ActivityModel.xcdatamodel */;
+			path = ActivityModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 507D1DBF1D25E4DD0023243C /* Project object */;
 }

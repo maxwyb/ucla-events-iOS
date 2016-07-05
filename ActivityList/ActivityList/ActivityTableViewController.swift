@@ -7,16 +7,61 @@
 //
 
 import UIKit
+import CoreData
+
+// Global variables and functions 
+var activities = [NSManagedObject]();
+
+func saveSampleActivities(holder who: String, description what: String, date when: String) {
+    // save an activity to Core Data
+    // 1
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    let managedContext = appDelegate.managedObjectContext
+    
+    // 2
+    let entity = NSEntityDescription.entityForName("Activity", inManagedObjectContext: managedContext)
+    
+    let activity = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+    
+    // 3
+    activity.setValue(who, forKey: "holder")
+    activity.setValue(what, forKey: "descript")
+    activity.setValue(when, forKey: "date")
+    
+    // 4
+    do {
+        try managedContext.save()
+        activities.append(activity)
+    } catch let error as NSError {
+        print("Could not save activity. \(error), \(error.userInfo)")
+    }
+}
+
 
 class ActivityTableViewController: UITableViewController {
-
-    var activities = [Activity]();
+    
+    @IBAction func addActivity(sender: AnyObject) {
+        
+        //self.presentViewController(AddActivityViewController(), animated: true, completion: nil)
+        
+    }
     
     func loadSampleActivities() {
+        
+        if activities.count == 0 {
+            saveSampleActivities(holder: "Jackie Yang", description: "iOS Programming Club: Weekly Meeting #1", date: "July 4th, 2016; Boelter 3400")
+            
+            saveSampleActivities(holder: "Jackie Chan", description: "A quick brown fox jumps over the lazy dog.", date: "February 30th, 2017; Rieber Summit")
+            
+            print("Save sample activities successful. ")
+        }
+        /*
         let activity1 = Activity(holder: "Jackie Yang", description: "iOS Programming Club: Weekly Meeting #1", date: "July 4th, 2016; Boelter 3400")
         let activity2 = Activity(holder: "Jackie Chan", description: "A quick brown fox jumps over the lazy dog.", date: "February 30th, 2017; Rieber Summit")
         
         activities += [activity1, activity2]
+         */
     }
     
     override func viewDidLoad() {
@@ -28,6 +73,27 @@ class ActivityTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        // Fetch activities from Core Data
+        // 1
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        // 2
+        let fetchRequest = NSFetchRequest(entityName: "Activity")
+        
+        // 3
+        do {
+            let results = try managedContext.executeFetchRequest(fetchRequest)
+            activities = results as! [NSManagedObject]
+        } catch let error as NSError {
+            print("Could not fetch activities. \(error), \(error.userInfo)")
+        }
+        
+        // load sample activities if the list is empty
         loadSampleActivities();
     }
 
@@ -59,9 +125,10 @@ class ActivityTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ActivityTableViewCell
 
         let activity = activities[indexPath.row]
-        cell.holderLabel.text = activity.holder
-        cell.descriptionLabel.text = activity.descript
-        cell.dateLabel.text = activity.date
+        
+        cell.holderLabel.text = activity.valueForKey("holder") as? String
+        cell.descriptionLabel.text = activity.valueForKey("descript") as? String
+        cell.dateLabel.text = activity.valueForKey("date") as? String
         
         return cell
     }
