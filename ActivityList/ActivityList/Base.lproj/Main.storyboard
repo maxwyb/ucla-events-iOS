@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Szx-ZA-0F8">
-                                <rect key="frame" x="259" y="285" width="82" height="29"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Szx-ZA-0F8">
+                                <rect key="frame" x="262.5" y="284.5" width="75" height="30"/>
                                 <state key="normal" title="Table View"/>
                                 <connections>
                                     <segue destination="nP9-pS-PBd" kind="show" id="pJH-Pg-5R9"/>
@@ -85,7 +85,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Activity List" id="Gbi-KS-QXS">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="MI8-D9-B4e"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gH9-pZ-vkB">
                             <connections>
                                 <action selector="addActivity:" destination="iKu-wU-rSP" id="TUa-pw-HEh"/>
@@ -110,27 +109,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Holder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k5C-x9-nj6">
-                                <rect key="frame" x="144" y="231" width="312" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Holder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k5C-x9-nj6">
+                                <rect key="frame" x="144" y="235" width="312" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="312" id="VdJ-OM-q1v"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q3U-h5-Qe6">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q3U-h5-Qe6">
                                 <rect key="frame" x="144" y="285" width="312" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="312" id="7PD-KH-3Sm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date &amp; Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ziq-XZ-wVd">
-                                <rect key="frame" x="144" y="336" width="312" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date &amp; Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ziq-XZ-wVd">
+                                <rect key="frame" x="144" y="335" width="312" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="312" id="D9N-y1-kHG"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Ziq-XZ-wVd" firstAttribute="centerY" secondItem="meJ-hp-dq7" secondAttribute="centerY" constant="50" id="6Ne-fv-kMl"/>
                             <constraint firstItem="q3U-h5-Qe6" firstAttribute="centerX" secondItem="meJ-hp-dq7" secondAttribute="centerX" id="Fyy-Nd-Rqy"/>
                             <constraint firstItem="k5C-x9-nj6" firstAttribute="centerX" secondItem="meJ-hp-dq7" secondAttribute="centerX" id="Ul3-qw-hc1"/>
+                            <constraint firstItem="q3U-h5-Qe6" firstAttribute="centerY" secondItem="meJ-hp-dq7" secondAttribute="centerY" id="fVe-hB-MZ6"/>
                             <constraint firstItem="Ziq-XZ-wVd" firstAttribute="centerX" secondItem="meJ-hp-dq7" secondAttribute="centerX" id="lV7-Zb-ITE"/>
+                            <constraint firstItem="k5C-x9-nj6" firstAttribute="centerY" secondItem="meJ-hp-dq7" secondAttribute="centerY" constant="-50" id="nK5-fy-6Vd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add New Activity" id="PEW-3A-5F0">
@@ -193,6 +204,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZQk-S3-NOh"/>
+        <segue reference="pJH-Pg-5R9"/>
     </inferredMetricsTieBreakers>
 </document>

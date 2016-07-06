@@ -71,11 +71,15 @@ class ActivityTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        // store sample activities to Core Data if the list is empty
+        //loadSampleActivities();
+        
         // Fetch activities from Core Data
         // 1
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -92,9 +96,7 @@ class ActivityTableViewController: UITableViewController {
         } catch let error as NSError {
             print("Could not fetch activities. \(error), \(error.userInfo)")
         }
-        
-        // load sample activities if the list is empty
-        loadSampleActivities();
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,7 +119,7 @@ class ActivityTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        print("tableView(cellForRowAtIndexPath) called; indexPath.row = ", indexPath.row);
+        //print("tableView(cellForRowAtIndexPath) called; indexPath.row = ", indexPath.row);
         
         // Table view cells are reused and should be dequeued using a cell identifier.
         // Configure the cell...
@@ -130,17 +132,19 @@ class ActivityTableViewController: UITableViewController {
         cell.descriptionLabel.text = activity.valueForKey("descript") as? String
         cell.dateLabel.text = activity.valueForKey("date") as? String
         
+        cell.selectionStyle = UITableViewCellSelectionStyle.None // no cells can be highlighted by tap
+        
         return cell
     }
 
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
 
     // Override to support editing the table view.
@@ -158,7 +162,7 @@ class ActivityTableViewController: UITableViewController {
                 activities.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             } catch let error as NSError {
-                print("Could not save activities before deletion. \(error), \(error.userInfo)")
+                print("Could not delete the activity. \(error), \(error.userInfo)")
             }
             
         } else if editingStyle == .Insert {
