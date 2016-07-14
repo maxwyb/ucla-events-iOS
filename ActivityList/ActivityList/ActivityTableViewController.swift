@@ -8,11 +8,12 @@
 
 import UIKit
 import CoreData
+import SwiftyJSON
 
 // Global variables and functions 
 var activities = [NSManagedObject]();
 
-func saveActivities(holder: String, description: String, date: String) {
+func saveActivities(title: String, url: String, details: String, location: String, date: String, host: String, tag1: String, tag2: String, tag3: String) {
     // save an activity to Core Data
     // 1
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -23,9 +24,15 @@ func saveActivities(holder: String, description: String, date: String) {
     let activity = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
     
     // 3
-    activity.setValue(holder, forKey: "holder")
-    activity.setValue(description, forKey: "descript")
+    activity.setValue(title, forKey: "title")
+    activity.setValue(url, forKey: "url")
+    activity.setValue(details, forKey: "details")
+    activity.setValue(location, forKey: "location")
     activity.setValue(date, forKey: "date")
+    activity.setValue(host, forKey: "host")
+    activity.setValue(tag1, forKey: "tag1")
+    activity.setValue(tag2, forKey: "tag2")
+    activity.setValue(tag3, forKey: "tag3")
     
     // 4
     do {
@@ -39,12 +46,7 @@ func saveActivities(holder: String, description: String, date: String) {
 
 class ActivityTableViewController: UITableViewController {
     
-    @IBAction func addActivity(sender: AnyObject) {
-        
-        //self.presentViewController(AddActivityViewController(), animated: true, completion: nil)
-        
-    }
-    
+    /*
     func loadSampleActivities() {
         
         if activities.count == 0 {
@@ -61,6 +63,7 @@ class ActivityTableViewController: UITableViewController {
         activities += [activity1, activity2]
          */
     }
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +73,44 @@ class ActivityTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        
+        // Fetch events data from server and store to Core Data
+        let urlString = "https://ucla-events.herokuapp.com/api/events"
+        
+        if let url = NSURL(string: urlString) {
+            if let data = try? NSData(contentsOfURL: url, options: []) {
+                let json = JSON(data: data)
+                
+                for event in json.arrayValue {
+                    let id = event["_id"].stringValue
+                    let url = event["url"].stringValue
+                    let details = event["details"].stringValue
+                    let location = event["location"].stringValue
+                    let date = event["date"].stringValue
+                    let host = event["host"].stringValue
+                    let title = event["title"].stringValue
+                    
+                    print(id, url, location, date, host, title)
+                    
+                    let tag1 = event["tags"][0].stringValue
+                    let tag2 = event["tags"][1].stringValue
+                    let tag3 = event["tags"][2].stringValue
+                    print(tag1, tag2, tag3);
+                    
+                    /*
+                    var tag1, tag2, tag3: String
+                    for tags in json["tags"].arrayValue {
+                        tag1 = tags[0].stringValue
+                        tag2 = tags[1].stringValue
+                        tag3 = tags[2].stringValue
+                        
+                        print(tag1, tag2, tag3)
+                    }
+                    */
+
+                }
+            }
+        }
         
     }
     
@@ -125,8 +166,8 @@ class ActivityTableViewController: UITableViewController {
 
         let activity = activities[indexPath.row]
         
-        cell.holderLabel.text = activity.valueForKey("holder") as? String
-        cell.descriptionLabel.text = activity.valueForKey("descript") as? String
+        cell.holderLabel.text = activity.valueForKey("host") as? String
+        cell.descriptionLabel.text = activity.valueForKey("title") as? String
         cell.dateLabel.text = activity.valueForKey("date") as? String
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None // no cells can be highlighted by tap

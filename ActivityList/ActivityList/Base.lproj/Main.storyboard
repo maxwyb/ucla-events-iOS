@@ -87,7 +87,6 @@
                     <navigationItem key="navigationItem" title="Activity List" id="Gbi-KS-QXS">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gH9-pZ-vkB">
                             <connections>
-                                <action selector="addActivity:" destination="iKu-wU-rSP" id="TUa-pw-HEh"/>
                                 <segue destination="7mf-L1-oQI" kind="presentation" id="qlI-91-PXz"/>
                             </connections>
                         </barButtonItem>

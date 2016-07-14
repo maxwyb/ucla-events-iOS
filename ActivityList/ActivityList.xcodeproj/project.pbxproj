@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14F96EEBE91FAC3447FECA3D /* Pods_ActivityList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBD9009C4ADC46DF71FF8267 /* Pods_ActivityList.framework */; };
 		507D1DCB1D25E4DD0023243C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D1DCA1D25E4DD0023243C /* AppDelegate.swift */; };
 		507D1DCD1D25E4DD0023243C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D1DCC1D25E4DD0023243C /* ViewController.swift */; };
 		507D1DD01D25E4DD0023243C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 507D1DCE1D25E4DD0023243C /* Main.storyboard */; };
@@ -14,7 +15,6 @@
 		507D1DD51D25E4DD0023243C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 507D1DD31D25E4DD0023243C /* LaunchScreen.storyboard */; };
 		507D1DDD1D25ED4A0023243C /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D1DDC1D25ED4A0023243C /* ActivityTableViewCell.swift */; };
 		507D1DDF1D25EF4B0023243C /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D1DDE1D25EF4B0023243C /* ActivityTableViewController.swift */; };
-		507D1DE11D25F5740023243C /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D1DE01D25F5740023243C /* Activity.swift */; };
 		50975CE51D2B767F00C6B85D /* ActivityModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50975CE31D2B767F00C6B85D /* ActivityModel.xcdatamodeld */; };
 		50975CE71D2B814C00C6B85D /* AddActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50975CE61D2B814C00C6B85D /* AddActivityViewController.swift */; };
 /* End PBXBuildFile section */
@@ -29,9 +29,11 @@
 		507D1DD61D25E4DD0023243C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		507D1DDC1D25ED4A0023243C /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		507D1DDE1D25EF4B0023243C /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
-		507D1DE01D25F5740023243C /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		50975CE41D2B767F00C6B85D /* ActivityModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ActivityModel.xcdatamodel; sourceTree = "<group>"; };
 		50975CE61D2B814C00C6B85D /* AddActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityViewController.swift; sourceTree = "<group>"; };
+		861FC4BE16433FCFE7DC284F /* Pods-ActivityList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ActivityList/Pods-ActivityList.release.xcconfig"; sourceTree = "<group>"; };
+		953D38BE511879C4312B3ADC /* Pods-ActivityList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ActivityList/Pods-ActivityList.debug.xcconfig"; sourceTree = "<group>"; };
+		DBD9009C4ADC46DF71FF8267 /* Pods_ActivityList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ActivityList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +41,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F96EEBE91FAC3447FECA3D /* Pods_ActivityList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		138D8D07996896C1131FF8A7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				953D38BE511879C4312B3ADC /* Pods-ActivityList.debug.xcconfig */,
+				861FC4BE16433FCFE7DC284F /* Pods-ActivityList.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		507D1DBE1D25E4DD0023243C = {
 			isa = PBXGroup;
 			children = (
 				507D1DC91D25E4DD0023243C /* ActivityList */,
 				507D1DC81D25E4DD0023243C /* Products */,
+				138D8D07996896C1131FF8A7 /* Pods */,
+				5AF0A9D83FB8716186DF1EC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,13 +84,20 @@
 				507D1DCE1D25E4DD0023243C /* Main.storyboard */,
 				50975CE61D2B814C00C6B85D /* AddActivityViewController.swift */,
 				507D1DDE1D25EF4B0023243C /* ActivityTableViewController.swift */,
-				507D1DE01D25F5740023243C /* Activity.swift */,
 				507D1DDC1D25ED4A0023243C /* ActivityTableViewCell.swift */,
 				507D1DD11D25E4DD0023243C /* Assets.xcassets */,
 				507D1DD31D25E4DD0023243C /* LaunchScreen.storyboard */,
 				507D1DD61D25E4DD0023243C /* Info.plist */,
 			);
 			path = ActivityList;
+			sourceTree = "<group>";
+		};
+		5AF0A9D83FB8716186DF1EC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DBD9009C4ADC46DF71FF8267 /* Pods_ActivityList.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,9 +107,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 507D1DD91D25E4DD0023243C /* Build configuration list for PBXNativeTarget "ActivityList" */;
 			buildPhases = (
+				CE35A3A05DE5E04950470BDF /* [CP] Check Pods Manifest.lock */,
 				507D1DC31D25E4DD0023243C /* Sources */,
 				507D1DC41D25E4DD0023243C /* Frameworks */,
 				507D1DC51D25E4DD0023243C /* Resources */,
+				A44EF9C07A363E19D729ED12 /* [CP] Embed Pods Frameworks */,
+				3E7F7F128F4DDAABB2B67335 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -146,13 +170,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3E7F7F128F4DDAABB2B67335 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ActivityList/Pods-ActivityList-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A44EF9C07A363E19D729ED12 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ActivityList/Pods-ActivityList-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE35A3A05DE5E04950470BDF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		507D1DC31D25E4DD0023243C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				50975CE51D2B767F00C6B85D /* ActivityModel.xcdatamodeld in Sources */,
-				507D1DE11D25F5740023243C /* Activity.swift in Sources */,
 				507D1DDF1D25EF4B0023243C /* ActivityTableViewController.swift in Sources */,
 				507D1DCD1D25E4DD0023243C /* ViewController.swift in Sources */,
 				50975CE71D2B814C00C6B85D /* AddActivityViewController.swift in Sources */,
@@ -268,6 +339,7 @@
 		};
 		507D1DDA1D25E4DD0023243C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 953D38BE511879C4312B3ADC /* Pods-ActivityList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ActivityList/Info.plist;
@@ -279,6 +351,7 @@
 		};
 		507D1DDB1D25E4DD0023243C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 861FC4BE16433FCFE7DC284F /* Pods-ActivityList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ActivityList/Info.plist;

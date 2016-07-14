@@ -18,7 +18,7 @@ class AddActivityViewController: UIViewController, UITextFieldDelegate {
     // MARK: Actions
     @IBAction func saveActivity(sender: AnyObject) {
         
-        saveActivities(newHolder.text!, description: newDescription.text!, date: newDate.text!)
+        saveActivities(newDescription.text!, url: "", details: "", location: "", date: newDate.text!, host: newHolder.text!, tag1: "", tag2: "", tag3: "")
         
         //self.dismissViewControllerAnimated(true, completion: nil)
         //self.presentViewController(ActivityTableViewController(), animated: true, completion: nil)

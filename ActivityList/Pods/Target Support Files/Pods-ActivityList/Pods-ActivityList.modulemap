@@ -1,0 +1,6 @@
+framework module Pods_ActivityList {
+  umbrella header "Pods-ActivityList-umbrella.h"
+
+  export *
+  module * { export * }
+}
