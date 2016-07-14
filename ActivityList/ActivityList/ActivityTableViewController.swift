@@ -11,17 +11,18 @@ import CoreData
 import SwiftyJSON
 
 // Global variables and functions 
-var activities = [NSManagedObject]();
+var activities = [NSManagedObject]()
+//var tagsForActivities = [NSManagedObject]()
 
-func saveActivities(title: String, url: String, details: String, location: String, date: String, host: String, tag1: String, tag2: String, tag3: String) {
+func saveActivities(title: String, url: String, details: String, location: String, date: String, host: String, tags:[String]) {
     // save an activity to Core Data
     // 1
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let managedContext = appDelegate.managedObjectContext
     
     // 2
-    let entity = NSEntityDescription.entityForName("Activity", inManagedObjectContext: managedContext)
-    let activity = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+    let entityActivity = NSEntityDescription.entityForName("Activity", inManagedObjectContext: managedContext)
+    let activity = NSManagedObject(entity: entityActivity!, insertIntoManagedObjectContext: managedContext)
     
     // 3
     activity.setValue(title, forKey: "title")
@@ -30,11 +31,26 @@ func saveActivities(title: String, url: String, details: String, location: Strin
     activity.setValue(location, forKey: "location")
     activity.setValue(date, forKey: "date")
     activity.setValue(host, forKey: "host")
-    activity.setValue(tag1, forKey: "tag1")
-    activity.setValue(tag2, forKey: "tag2")
-    activity.setValue(tag3, forKey: "tag3")
     
-    // 4
+    // 4: Entity Tag
+    let entityTag = NSEntityDescription.entityForName("Tag", inManagedObjectContext: managedContext)
+    var tag = [NSManagedObject]()
+    
+//    tag[0] = NSManagedObject(entity: entityTag!, insertIntoManagedObjectContext: managedContext)
+//    tag[0].setValue("(Placeholder)", forKey: "tag")
+//    activity.setValue(NSSet(object: tag[0]), forKey: "tags")
+    
+    for index in 0...2 {
+        tag.append(NSManagedObject(entity: entityTag!, insertIntoManagedObjectContext: managedContext))
+        
+        tag[index].setValue(tags[index], forKey: "tag")
+        
+        let tagsStored = activity.mutableSetValueForKey("tags")
+        tagsStored.addObject(tag[index])
+        
+    }
+    
+    // 5
     do {
         try managedContext.save()
         activities.append(activity)
@@ -92,22 +108,13 @@ class ActivityTableViewController: UITableViewController {
                     
                     print(id, url, location, date, host, title)
                     
-                    let tag1 = event["tags"][0].stringValue
-                    let tag2 = event["tags"][1].stringValue
-                    let tag3 = event["tags"][2].stringValue
-                    print(tag1, tag2, tag3);
-                    
-                    /*
-                    var tag1, tag2, tag3: String
-                    for tags in json["tags"].arrayValue {
-                        tag1 = tags[0].stringValue
-                        tag2 = tags[1].stringValue
-                        tag3 = tags[2].stringValue
-                        
-                        print(tag1, tag2, tag3)
+                    var tags = [String]()
+                    for index in 0...2 {
+                        tags.append(event["tags"][index].stringValue)
+                        print(tags[index])
                     }
-                    */
 
+                    saveActivities(title, url: url, details: details, location: location, date: date, host: host, tags: tags)
                 }
             }
         }
