@@ -20,7 +20,7 @@ class AddActivityViewController: UIViewController, UITextFieldDelegate {
         
         let emptyStringArray = [String]()
         
-        saveActivities(newDescription.text!, url: "", details: "", location: "", date: newDate.text!, host: newHolder.text!, tags: emptyStringArray)
+        saveActivities(newDescription.text!, id: "", url: "", details: "", location: "", date: newDate.text!, host: newHolder.text!, tags: emptyStringArray)
         
         //self.dismissViewControllerAnimated(true, completion: nil)
         //self.presentViewController(ActivityTableViewController(), animated: true, completion: nil)

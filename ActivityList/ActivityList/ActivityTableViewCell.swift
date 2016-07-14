@@ -12,9 +12,15 @@ class ActivityTableViewCell: UITableViewCell {
 
     // MARK: Properties
     
-    @IBOutlet weak var holderLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var urlLabel: UILabel!
+    @IBOutlet weak var hostLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var tagsLabel: UILabel!
+    @IBOutlet weak var detailsLabel: UILabel!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

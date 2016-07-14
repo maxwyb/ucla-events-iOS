@@ -14,7 +14,7 @@ import SwiftyJSON
 var activities = [NSManagedObject]()
 //var tagsForActivities = [NSManagedObject]()
 
-func saveActivities(title: String, url: String, details: String, location: String, date: String, host: String, tags:[String]) {
+func saveActivities(title: String, id: String, url: String, details: String, location: String, date: String, host: String, tags:[String]) {
     // save an activity to Core Data
     // 1
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -25,6 +25,7 @@ func saveActivities(title: String, url: String, details: String, location: Strin
     let activity = NSManagedObject(entity: entityActivity!, insertIntoManagedObjectContext: managedContext)
     
     // 3
+    activity.setValue(id, forKey: "id")
     activity.setValue(title, forKey: "title")
     activity.setValue(url, forKey: "url")
     activity.setValue(details, forKey: "details")
@@ -90,12 +91,21 @@ class ActivityTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
+        fetchServerEvents()
+    }
+    
+    func fetchServerEvents() -> Bool {
         // Fetch events data from server and store to Core Data
         let urlString = "https://ucla-events.herokuapp.com/api/events"
         
         if let url = NSURL(string: urlString) {
-            if let data = try? NSData(contentsOfURL: url, options: []) {
+            do {
+                let data = try NSData(contentsOfURL: url, options: [])
                 let json = JSON(data: data)
+                
+                // Successfully fetched events from server; delete local Core Data
+                clearCoreDataOfEntity("Activity")
+                clearCoreDataOfEntity("Tag")
                 
                 for event in json.arrayValue {
                     let id = event["_id"].stringValue
@@ -106,17 +116,43 @@ class ActivityTableViewController: UITableViewController {
                     let host = event["host"].stringValue
                     let title = event["title"].stringValue
                     
-                    print(id, url, location, date, host, title)
+//                    print(id, url, location, date, host, title)
                     
                     var tags = [String]()
                     for index in 0...2 {
                         tags.append(event["tags"][index].stringValue)
-                        print(tags[index])
+//                        print(tags[index])
                     }
-
-                    saveActivities(title, url: url, details: details, location: location, date: date, host: host, tags: tags)
+                    
+                    saveActivities(title, id: id, url: url, details: details, location: location, date: date, host: host, tags: tags)
                 }
+                
+            } catch let error as NSError {
+                print("Fetching error of events on server. \(error), \(error.userInfo)\nUsing local data instead.")
+                return false
             }
+            
+//            if let data = try? NSData(contentsOfURL: url, options: []) { }
+        
+        }
+        
+        return true
+    }
+    
+    func clearCoreDataOfEntity(entity: String) {
+        
+        // delete all objects of an entity in Core Data
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let coord = appDelegate.persistentStoreCoordinator
+        
+        let fetchRequest = NSFetchRequest(entityName: entity)
+        let deleteReqeust = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try coord.executeRequest(deleteReqeust, withContext: managedContext)
+        } catch let error as NSError {
+            print("Clear Core Data of Entity failed. \(error), \(error.userInfo) ")
         }
         
     }
@@ -126,6 +162,10 @@ class ActivityTableViewController: UITableViewController {
         // store sample activities to Core Data if the list is empty
         //loadSampleActivities();
         
+        fetchCoreDataEvents()
+    }
+    
+    func fetchCoreDataEvents() {
         // Fetch activities from Core Data
         // 1
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -141,7 +181,6 @@ class ActivityTableViewController: UITableViewController {
         } catch let error as NSError {
             print("Could not fetch activities. \(error), \(error.userInfo)")
         }
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -173,9 +212,21 @@ class ActivityTableViewController: UITableViewController {
 
         let activity = activities[indexPath.row]
         
-        cell.holderLabel.text = activity.valueForKey("host") as? String
-        cell.descriptionLabel.text = activity.valueForKey("title") as? String
+        cell.idLabel.text = activity.valueForKey("id") as? String
+        cell.urlLabel.text = activity.valueForKey("url") as? String
+        cell.hostLabel.text = activity.valueForKey("host") as? String
+        cell.titleLabel.text = activity.valueForKey("title") as? String
+        cell.locationLabel.text = activity.valueForKey("location") as? String
         cell.dateLabel.text = activity.valueForKey("date") as? String
+        cell.detailsLabel.text = activity.valueForKey("details") as? String
+        
+        let tags = activity.mutableSetValueForKey("tags")
+        var tagString = ""
+        for aTag in tags {
+            tagString += aTag.valueForKey("tag") as! String
+            tagString += " "
+        }
+        cell.tagsLabel.text = tagString
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None // no cells can be highlighted by tap
         

@@ -6,9 +6,6 @@
         <attribute name="host" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="tag1" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="tag2" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="tag3" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="activity" inverseEntity="Tag" syncable="YES"/>
@@ -18,7 +15,7 @@
         <relationship name="activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Activity" inverseName="tags" inverseEntity="Activity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Activity" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="Activity" positionX="-63" positionY="-18" width="128" height="165"/>
         <element name="Tag" positionX="-54" positionY="63" width="128" height="75"/>
     </elements>
 </model>
