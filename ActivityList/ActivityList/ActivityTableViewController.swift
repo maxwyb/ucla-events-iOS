@@ -12,22 +12,20 @@ import CoreData
 // Global variables and functions 
 var activities = [NSManagedObject]();
 
-func saveSampleActivities(holder who: String, description what: String, date when: String) {
+func saveActivities(holder: String, description: String, date: String) {
     // save an activity to Core Data
     // 1
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    
     let managedContext = appDelegate.managedObjectContext
     
     // 2
     let entity = NSEntityDescription.entityForName("Activity", inManagedObjectContext: managedContext)
-    
     let activity = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
     
     // 3
-    activity.setValue(who, forKey: "holder")
-    activity.setValue(what, forKey: "descript")
-    activity.setValue(when, forKey: "date")
+    activity.setValue(holder, forKey: "holder")
+    activity.setValue(description, forKey: "descript")
+    activity.setValue(date, forKey: "date")
     
     // 4
     do {
@@ -50,9 +48,9 @@ class ActivityTableViewController: UITableViewController {
     func loadSampleActivities() {
         
         if activities.count == 0 {
-            saveSampleActivities(holder: "Jackie Yang", description: "iOS Programming Club: Weekly Meeting #1", date: "July 4th, 2016; Boelter 3400")
+            saveActivities("Jackie Yang", description: "iOS Programming Club: Weekly Meeting #1", date: "July 4th, 2016; Boelter 3400")
             
-            saveSampleActivities(holder: "Jackie Chan", description: "A quick brown fox jumps over the lazy dog.", date: "February 30th, 2017; Rieber Summit")
+            saveActivities("Jackie Chan", description: "A quick brown fox jumps over the lazy dog.", date: "February 30th, 2017; Rieber Summit")
             
             print("Save sample activities successful. ")
         }
@@ -83,7 +81,6 @@ class ActivityTableViewController: UITableViewController {
         // Fetch activities from Core Data
         // 1
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
         let managedContext = appDelegate.managedObjectContext
         
         // 2
@@ -122,7 +119,7 @@ class ActivityTableViewController: UITableViewController {
         //print("tableView(cellForRowAtIndexPath) called; indexPath.row = ", indexPath.row);
         
         // Table view cells are reused and should be dequeued using a cell identifier.
-        // Configure the cell...
+        // Configure the cell
         let cellIdentifier = "ActivityTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ActivityTableViewCell
 
@@ -150,16 +147,16 @@ class ActivityTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
             
+            // Delete the row from the data source
             //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
             appDelegate.managedObjectContext.deleteObject(activities[indexPath.row])
             
             do {
                 try appDelegate.managedObjectContext.save()
                 activities.removeAtIndex(indexPath.row)
+                
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             } catch let error as NSError {
                 print("Could not delete the activity. \(error), \(error.userInfo)")

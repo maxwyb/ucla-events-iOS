@@ -8,15 +8,17 @@
 
 import UIKit
 
-class AddActivityViewController: UIViewController {
+class AddActivityViewController: UIViewController, UITextFieldDelegate {
 
+    // MARK: Properties
     @IBOutlet weak var newHolder: UITextField!
     @IBOutlet weak var newDescription: UITextField!
     @IBOutlet weak var newDate: UITextField!
     
+    // MARK: Actions
     @IBAction func saveActivity(sender: AnyObject) {
         
-        saveSampleActivities(holder: newHolder.text!, description: newDescription.text!, date: newDate.text!)
+        saveActivities(newHolder.text!, description: newDescription.text!, date: newDate.text!)
         
         //self.dismissViewControllerAnimated(true, completion: nil)
         //self.presentViewController(ActivityTableViewController(), animated: true, completion: nil)
@@ -27,7 +29,9 @@ class AddActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        newHolder.delegate = self
+        newDescription.delegate = self
+        newDate.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +39,11 @@ class AddActivityViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: UITextFieldDelegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
     /*
     // MARK: - Navigation
